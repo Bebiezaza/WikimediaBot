@@ -4,9 +4,7 @@ const input = JSON.parse(fs.readFileSync("./input/gazette.json"));
 
 let mainArray = [];
 
-console.log(input.length);
-
-/* ===== this is for year 2557-2565+ ===== */
+/* ===== this is for year 2557-2565 (~around June 2561, link format updates) ===== */
 for (let k in input) {
     // throw error
     if (!input[k].book || !input[k].chapter || !input[k].pageStart || !input[k].pageEnd 
@@ -31,29 +29,79 @@ for (let k in input) {
 
     // construct file URL
     let fileUrl = "http://www.ratchakitcha.soc.go.th/DATA/PDF/" + String(input[k].pubYear) + "/";
-
-    if (chapter.special === true) {
-        fileUrl += "E/";
-    } else {
-        switch (chapter.type) {
-            case "ก":
-                fileUrl += "A/";
-                break;
-            case "ข":
-                fileUrl += "B/";
-                break;
-            case "ค":
-                fileUrl += "C/";
-                break;
-            case "ง":
-                fileUrl += "D/";
-                break;
+    if (parseInt(input[k].pubYear) > 2561 || (parseInt(input[k].pubYear) === 2561 && parseInt(convertMonth(input[k].pubMonth, "nameTH", "num")) >= 10)) {
+// from October 2561 onwards
+        if (chapter.special === true) {
+            fileUrl += "E/";
+        } else {
+            switch (chapter.type) {
+                case "ก":
+                    fileUrl += "A/";
+                    break;
+                case "ข":
+                    fileUrl += "B/";
+                    break;
+                case "ค":
+                    fileUrl += "C/";
+                    break;
+                case "ง":
+                    fileUrl += "D/";
+                    break;
+            }
         }
+
+        fileUrl += String(chapter.number).padStart(3, "0") + "/";
+
+        fileUrl += "T_" + String(input[k].pageStart).padStart("4", "0") + ".PDF";
+    } else if (parseInt(input[k].pubYear) === 2561 && parseInt(convertMonth(input[k].pubMonth, "nameTH", "num")) > 6) {
+// after June 2561, before October 2561
+        if (chapter.special === true) {
+            fileUrl += "E/";
+        } else {
+            switch (chapter.type) {
+                case "ก":
+                    fileUrl += "A/";
+                    break;
+                case "ข":
+                    fileUrl += "B/";
+                    break;
+                case "ค":
+                    fileUrl += "C/";
+                    break;
+                case "ง":
+                    fileUrl += "D/";
+                    break;
+            }
+        }
+
+        fileUrl += String(chapter.number).padStart(3, "0") + "/";
+
+        fileUrl += "T" + String(input[k].pageStart) + ".PDF";
+    } else {
+// before June 2561
+        if (chapter.special === true) {
+            fileUrl += "E/";
+        } else {
+            switch (chapter.type) {
+                case "ก":
+                    fileUrl += "A/";
+                    break;
+                case "ข":
+                    fileUrl += "B/";
+                    break;
+                case "ค":
+                    fileUrl += "C/";
+                    break;
+                case "ง":
+                    fileUrl += "D/";
+                    break;
+            }
+        }
+
+        fileUrl += String(chapter.number).padStart(3, "0") + "/";
+
+        fileUrl += String(input[k].pageStart) + ".PDF";
     }
-
-    fileUrl += String(chapter.number).padStart(3, "0") + "/";
-
-    fileUrl += String(input[k].pageStart) + ".PDF";
 
     // Author info creation
     let commonsAuthor;
