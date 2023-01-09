@@ -33,10 +33,10 @@ const thwsBot = new mwn({
     }
 });
 
-// commonsBot.login();
+commonsBot.login();
 thwsBot.login();
 
 module.exports = {
-    // commonsBot,
+    commonsBot,
     thwsBot
-}
+};
