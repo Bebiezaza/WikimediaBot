@@ -24,7 +24,7 @@ for (let k in input) {
     const chapter = {
         number: input[k].chapter.match(/(\d{1,}) (.)/)[1],
         type: input[k].chapter.match(/(\d{1,}) (.)/)[2],
-        special: (() => { if (input[k].chapter.match(/^พิเศษ/) !== null) { return true } else { return false } })()
+        special: (() => { if (input[k].chapter.match(/^พิเศษ/) !== null) { return true; } else { return false; } })()
     };
 
     // construct file URL
@@ -171,10 +171,10 @@ for (let k in input) {
 [[Category:Thai government PDF files]]
 [[Category:PDF files in Thai]]
 [[Category:Works published in the Royal Thai Government Gazette]]
-`
+`;
 
     // (additional categories go here)
-    commonsText += "[[Category:Orders of the National Council for Peace and Order]]\n"
+    commonsText += "[[Category:Orders of the National Council for Peace and Order]]\n";
 
     // construct wikisource header
     let indexHeader = "";
@@ -226,10 +226,10 @@ for (let k in input) {
 |Header=${indexHeader}
 |Footer=
 }}
-`
+`;
 
     // (additional categories go here)
-    indexText += "[[หมวดหมู่:ดัชนีคำสั่ง]]\n"
+    indexText += "[[หมวดหมู่:ดัชนีคำสั่ง]]\n";
 
     // record to output
     const regexFileName = input[k].titleTH.match(/ที่ (\d{1,})\/(25(?:57|58|59|60|61|62|63|64))/);
@@ -237,7 +237,7 @@ for (let k in input) {
     let fileName = "";
     if (regexFileName[2] === "2557") fileName = `คำสั่ง คสช ${convertThaiNumber(input[k].signYear)}-${convertThaiNumber(regexFileName[1].padStart(3, "0"))}`;
     else fileName = `คำสั่ง คสช ${convertThaiNumber(input[k].signYear)}-${convertThaiNumber(regexFileName[1].padStart(2, "0"))}`;
-    if (regexFileSpecific) fileName += "-เฉพาะ"
+    if (regexFileSpecific) fileName += "-เฉพาะ";
     fileName += ".pdf";
     
     const output = {
@@ -245,14 +245,12 @@ for (let k in input) {
         link: fileUrl,
         commons: commonsText,
         index: indexText
-    }
+    };
 
     mainArray.push(output);
 }
 
-const finalOutput = JSON.stringify(mainArray);
-
-fs.writeFileSync("./output/gazette.json", finalOutput);
+fs.writeFileSync("./output/gazette.json", JSON.stringify(mainArray));
 
 /* ===== helper functions ===== */
 function convertThaiNumber(text) {
@@ -260,7 +258,7 @@ function convertThaiNumber(text) {
     .replace(/6/ig, "๖").replace(/7/ig, "๗").replace(/8/ig, "๘").replace(/9/ig, "๙").replace(/0/ig, "๐");
 
     return text;
-};
+}
 
 function convertMonth(text, fromType, toType) {
     const monthNum = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
@@ -283,7 +281,7 @@ function convertMonth(text, fromType, toType) {
         case "nameTH":
             search = monthNameTH;
             break;
-    };
+    }
 
     switch (toType) {
         case "num":
@@ -298,7 +296,7 @@ function convertMonth(text, fromType, toType) {
         case "nameTH":
             replace = monthNameTH;
             break;
-    };
+    }
 
     text = String(text);
 
