@@ -2,22 +2,22 @@
     {
     },
     {
-        "book": "131",
-        "chapter": "พิเศษ  ง",
+        "book": "",
+        "chapter": "",
         "pageStart": "",
         "pageEnd": "",
         "signDate": "",
         "signMonth": "",
-        "signYear": "2557",
+        "signYear": "",
         "pubDate": "",
         "pubMonth": "",
-        "pubYear": "2557",
-        "titleTH": "คำสั่งคณะรักษาความสงบแห่งชาติ ที่ /2557",
-        "titleEN": "Order of the National Council for Peace and Order No. /2557",
+        "pubYear": "",
+        "titleTH": "",
+        "titleEN": "",
         "subtitleTH": "",
         "subtitleEN": "",
-        "authorTH": "คณะรักษาความสงบแห่งชาติ",
-        "authorEN": "National Council for Peace and Order",
+        "authorTH": "",
+        "authorEN": "",
         "isAuthorPortal": true
     }
 ]
