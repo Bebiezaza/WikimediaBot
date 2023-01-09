@@ -16,7 +16,7 @@ const mainClock = setInterval(function () {
 
     main(counter);
     counter++;
-}, 6_000);
+}, 10_000);
 
 async function main(x) {
     mwn.log(`[I] ${x + 1} : uploading "${input[x].fileName}" to commons`);
