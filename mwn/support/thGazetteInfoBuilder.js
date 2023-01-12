@@ -30,7 +30,7 @@ for (let k in input) {
     // construct file URL
     let fileUrl = "http://www.ratchakitcha.soc.go.th/DATA/PDF/" + String(input[k].pubYear) + "/";
     if (parseInt(input[k].pubYear) > 2561 || (parseInt(input[k].pubYear) === 2561 && parseInt(convertMonth(input[k].pubMonth, "nameTH", "num")) >= 10)) {
-// from October 2561 onwards
+        // from October 2561 onwards
         if (chapter.special === true) {
             fileUrl += "E/";
         } else {
@@ -54,7 +54,7 @@ for (let k in input) {
 
         fileUrl += "T_" + String(input[k].pageStart).padStart("4", "0") + ".PDF";
     } else if (parseInt(input[k].pubYear) === 2561 && parseInt(convertMonth(input[k].pubMonth, "nameTH", "num")) > 6) {
-// after June 2561, before October 2561
+        // after June 2561, before October 2561
         if (chapter.special === true) {
             fileUrl += "E/";
         } else {
@@ -78,7 +78,7 @@ for (let k in input) {
 
         fileUrl += "T" + String(input[k].pageStart) + ".PDF";
     } else {
-// before June 2561
+        // before June 2561
         if (chapter.special === true) {
             fileUrl += "E/";
         } else {
@@ -255,7 +255,7 @@ fs.writeFileSync("./output/gazette.json", JSON.stringify(mainArray));
 /* ===== helper functions ===== */
 function convertThaiNumber(text) {
     text = text.replace(/1/ig, "๑").replace(/2/ig, "๒").replace(/3/ig, "๓").replace(/4/ig, "๔").replace(/5/ig, "๕")
-    .replace(/6/ig, "๖").replace(/7/ig, "๗").replace(/8/ig, "๘").replace(/9/ig, "๙").replace(/0/ig, "๐");
+        .replace(/6/ig, "๖").replace(/7/ig, "๗").replace(/8/ig, "๘").replace(/9/ig, "๙").replace(/0/ig, "๐");
 
     return text;
 }
