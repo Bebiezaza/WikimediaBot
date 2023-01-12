@@ -10,10 +10,14 @@
     "parserOptions": {
         "ecmaVersion": "latest"
     },
+    "ignorePatterns": ["**/*.json", "**/*.env"],
     "rules": {
         "comma-spacing": ["error", { "before": false, "after": true }],
         "indent": ["error", 4, { "outerIIFEBody": 0, "SwitchCase": 1 }],
         // "linebreak-style": ["error", "unix"],
-        "semi": ["error", "always"]
+        "semi": ["error", "always"],
+        "switch-colon-spacing": "error"
     }
 }
+
+// do |npx eslint **| on |cd mwn|
