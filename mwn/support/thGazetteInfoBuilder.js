@@ -108,10 +108,14 @@ for (let k in input) {
     let indexAuthor;
 
     if (input[k].isAuthorPortal === true) {
-        commonsAuthor = `{{en|1=${input[k].authorEN}}}\n{{th|1=${input[k].authorTH}}}`;
+        // commonsAuthor = `{{en|1=${input[k].authorEN}}}\n{{th|1=${input[k].authorTH}}}`;
+        // TODO: change the JSON structure to use wikidata, hard code for now:
+        commonsAuthor = `Q16919521`;
         indexAuthor = `{{ลสย|${input[k].authorTH}}}`;
     } else {
-        commonsAuthor = `{{Creator:${input[k].authorEN}}}`;
+        // commonsAuthor = `{{Creator:${input[k].authorEN}}}`;
+        // TODO: change the JSON structure to use wikidata, hard code for now:
+        commonsAuthor = `Q16919521`;
         indexAuthor = `{{ลผส|${input[k].authorTH}}}`;
     }
 
@@ -219,6 +223,7 @@ for (let k in input) {
 |ความคืบหน้า=C
 |การผสานหน้า=no
 |หน้า=${pagelist}
+|ชุดเล่ม={{ชุดเล่ม คำสั่งคณะรักษาความสงบแห่งชาติ}}
 |จำนวน=
 |หมายเหตุ=
 |Width=
