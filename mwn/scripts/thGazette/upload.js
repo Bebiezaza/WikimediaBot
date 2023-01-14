@@ -4,8 +4,8 @@ const { commonsBot, thwsBot } = require("../../core/bot");
 
 const input = JSON.parse(fs.readFileSync("./input/gazette.json"));
 
-let counter = 7; // 0
-const max = 29; //input.length - 1;
+let counter = 55 // 0
+const max = 59; //input.length - 1;
 mwn.log(`[I] There are ${max - counter + 1} upload and index creation operations to do`);
 
 const mainClock = setInterval(function () {
@@ -24,7 +24,7 @@ async function main(x) {
         if (resolve.result === 'Success') mwn.log(`[S] ${x + 1} : Uploaded!`);
         else console.log(resolve);
     }).catch(function(error) {
-        if (String(error).indexOf("http-bad-status") !== -1) {
+        if (String(error).indexOf("fileexists-no-change") === -1) { // Discovered codes: http-bad-status, backend-fail-stat
             mwn.log(`[W] ${x + 1} : http-bad-status, retrying`);
             return main(x);
         }
