@@ -27,82 +27,6 @@ for (let k in input) {
         special: (() => { if (input[k].chapter.match(/^พิเศษ/) !== null) { return true; } else { return false; } })()
     };
 
-    // construct file URL
-    let fileUrl = "http://www.ratchakitcha.soc.go.th/DATA/PDF/" + String(input[k].pubYear) + "/";
-    if (parseInt(input[k].pubYear) > 2561 || (parseInt(input[k].pubYear) === 2561 && parseInt(convertMonth(input[k].pubMonth, "nameTH", "num")) >= 10)) {
-        // from October 2561 onwards
-        if (chapter.special === true) {
-            fileUrl += "E/";
-        } else {
-            switch (chapter.type) {
-                case "ก":
-                    fileUrl += "A/";
-                    break;
-                case "ข":
-                    fileUrl += "B/";
-                    break;
-                case "ค":
-                    fileUrl += "C/";
-                    break;
-                case "ง":
-                    fileUrl += "D/";
-                    break;
-            }
-        }
-
-        fileUrl += String(chapter.number).padStart(3, "0") + "/";
-
-        fileUrl += "T_" + String(input[k].pageStart).padStart("4", "0") + ".PDF";
-    } else if (parseInt(input[k].pubYear) === 2561 && parseInt(convertMonth(input[k].pubMonth, "nameTH", "num")) > 6) {
-        // after June 2561, before October 2561
-        if (chapter.special === true) {
-            fileUrl += "E/";
-        } else {
-            switch (chapter.type) {
-                case "ก":
-                    fileUrl += "A/";
-                    break;
-                case "ข":
-                    fileUrl += "B/";
-                    break;
-                case "ค":
-                    fileUrl += "C/";
-                    break;
-                case "ง":
-                    fileUrl += "D/";
-                    break;
-            }
-        }
-
-        fileUrl += String(chapter.number).padStart(3, "0") + "/";
-
-        fileUrl += "T" + String(input[k].pageStart) + ".PDF";
-    } else {
-        // before June 2561
-        if (chapter.special === true) {
-            fileUrl += "E/";
-        } else {
-            switch (chapter.type) {
-                case "ก":
-                    fileUrl += "A/";
-                    break;
-                case "ข":
-                    fileUrl += "B/";
-                    break;
-                case "ค":
-                    fileUrl += "C/";
-                    break;
-                case "ง":
-                    fileUrl += "D/";
-                    break;
-            }
-        }
-
-        fileUrl += String(chapter.number).padStart(3, "0") + "/";
-
-        fileUrl += String(input[k].pageStart) + ".PDF";
-    }
-
     // Author info creation
     let commonsAuthor;
     let indexAuthor;
@@ -150,7 +74,7 @@ for (let k in input) {
 | City = Bangkok
 | Language = th
 | Description =
-| Source = {{th|1="[${fileUrl} ${convertThaiNumber(input[k].titleTH + " " + input[k].subtitleTH + " ลงวันที่ " + input[k].signDate + " " + input[k].signMonth + " " + input[k].signYear)}]". (${convertThaiNumber(input[k].pubYear)}, ${convertThaiNumber(input[k].pubDate)} ${input[k].pubMonth}). ''ราชกิจจานุเบกษา''. ${convertThaiNumber(gazettePageInfo).replace(", หน้า", ". หน้า")}.}}
+| Source = {{th|1="[${input[k].fileUrl} ${convertThaiNumber(input[k].titleTH + " " + input[k].subtitleTH + " ลงวันที่ " + input[k].signDate + " " + input[k].signMonth + " " + input[k].signYear)}]". (${convertThaiNumber(input[k].pubYear)}, ${convertThaiNumber(input[k].pubDate)} ${input[k].pubMonth}). ''ราชกิจจานุเบกษา''. ${convertThaiNumber(gazettePageInfo).replace(", หน้า", ". หน้า")}.}}
 | Permission =
 | Image =
 | Image page =
@@ -246,7 +170,7 @@ for (let k in input) {
     
     const output = {
         fileName,
-        link: fileUrl,
+        link: input[k].fileUrl,
         commons: commonsText,
         index: indexText
     };
