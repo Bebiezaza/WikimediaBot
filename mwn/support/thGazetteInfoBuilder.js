@@ -144,8 +144,7 @@ for (let k in input) {
 | Series title =
 | Volume =
 | Edition =
-| Publisher = {{en|1=Cabinet Secretariat}}
-{{th|1=สำนักเลขาธิการคณะรัฐมนตรี}}
+| Publisher = {{Institution:Cabinet Secretariat of Thailand}}
 | Printer =
 | Publication date = ${input[k].pubYear - 543}-${convertMonth(input[k].pubMonth, "nameTH", "num").padStart(2, "0")}-${input[k].pubDate}
 | City = Bangkok
